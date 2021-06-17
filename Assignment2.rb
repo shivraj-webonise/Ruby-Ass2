@@ -5,15 +5,15 @@ array1 = Array.new
 
 array2 = Array.new
 
-array1 = [1,4,8,3,7,12,76,33]
-array2 = [1,4,8,3,7,12,76,32]
+array1 = [1,4,8,3,7,12,76,33,75,91]
+array2 = [1,4,8,3,7,12,76,32,98]
 
 
 # Even numbers using Simple ruby Blocks
 cnt = 0
 
 array1.select{|num|
-    if(num%2 == 0)
+    if(num.even?)
         cnt = cnt + 1
     end
 }
@@ -26,46 +26,37 @@ cnt = 0
 
 # Even numbers using Procs 
 
-cnt = 0
 
-even_numbers = Proc.new {|num|
-if (num%2) == 0 
-    cnt = cnt + 1
-end
+arr1 = Proc.new{
+    cnt = 0
+    array1.select{ |num|
+        if num.even?
+            cnt = cnt + 1
+        end
+    }
+    puts cnt
+
 }
 
-arr1 = array1.select(&even_numbers)
 
-puts cnt
-
-cnt = 0
-
-arr2 = array2.select(&even_numbers)
-
-puts cnt
+arr1.call()
 
 
 
 # Even Numbers Using Lambda 
-cnt = 0
 
-
-even_numbers = lambda {|num|
-if (num%2) == 0 
-    cnt = cnt + 1
-end
+arr2 = lambda {
+    cnt = 0
+    array2.select{|num|
+        if num.even?
+            cnt = cnt + 1
+        end
+    }
+    puts cnt
 }
 
-arr1 = array1.select(&even_numbers)
 
-puts cnt
-
-cnt = 0
-
-arr2 = array2.select(&even_numbers)
-
-puts cnt
-
+arr2.call()
 
 
 
